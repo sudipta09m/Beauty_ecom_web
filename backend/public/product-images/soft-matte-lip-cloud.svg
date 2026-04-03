@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Soft Matte Lip Cloud</title>
+  <desc id="desc">Illustrated lipstick and lip color for Soft Matte Lip Cloud.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6d1db"/>
+      <stop offset="100%" stop-color="#f6f1ef"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <rect x="210" y="250" width="120" height="420" rx="24" fill="#ee2a6d"/>
+  <rect x="210" y="180" width="120" height="110" rx="20" fill="#25212d"/>
+  <rect x="440" y="420" width="110" height="250" rx="22" fill="#ea456d"/>
+  <rect x="440" y="320" width="110" height="120" rx="18" fill="#d3c9c7"/>
+  <polygon points="495,170 560,320 430,320" fill="#df2744"/>
+  <text x="400" y="845" text-anchor="middle" font-family="Georgia, serif" font-size="52" fill="#6c3f4d">Soft Matte</text>
+  <text x="400" y="905" text-anchor="middle" font-family="Georgia, serif" font-size="52" fill="#6c3f4d">Lip Cloud</text>
+</svg>

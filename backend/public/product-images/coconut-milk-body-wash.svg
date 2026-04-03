@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Coconut Milk Body Wash</title>
+  <desc id="desc">Illustrated bottle with botanical shapes for Coconut Milk Body Wash.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8dbc5"/>
+      <stop offset="100%" stop-color="#d1e0cf"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <ellipse cx="620" cy="760" rx="180" ry="120" fill="#c2d0af"/>
+  <ellipse cx="560" cy="710" rx="110" ry="78" fill="#ddc79f"/>
+  <rect x="285" y="180" width="230" height="95" rx="28" fill="#f7efe7"/>
+  <rect x="240" y="250" width="320" height="520" rx="72" fill="#d8a55c"/>
+  <rect x="290" y="380" width="220" height="150" rx="20" fill="#fff8ef"/>
+  <text x="400" y="445" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#6d5230">COCONUT</text>
+  <text x="400" y="492" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#6d5230">MILK</text>
+  <text x="400" y="848" text-anchor="middle" font-family="Verdana, sans-serif" font-size="28" letter-spacing="4" fill="#6d5230">BODY WASH</text>
+</svg>

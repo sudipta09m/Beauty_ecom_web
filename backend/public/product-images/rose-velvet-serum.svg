@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Rose Velvet Serum</title>
+  <desc id="desc">Illustrated bottle for Rose Velvet Serum.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7d8dd"/>
+      <stop offset="100%" stop-color="#eed0bc"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <circle cx="640" cy="180" r="120" fill="#ffffff" fill-opacity="0.28"/>
+  <rect x="280" y="165" width="240" height="110" rx="54" fill="#f3e9ea"/>
+  <rect x="240" y="240" width="320" height="520" rx="50" fill="#ef9ea5"/>
+  <rect x="285" y="215" width="230" height="70" rx="24" fill="#f7f0ef"/>
+  <rect x="285" y="355" width="230" height="170" rx="18" fill="#fff7f4"/>
+  <text x="400" y="425" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#6f4c45">ROSE</text>
+  <text x="400" y="472" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#6f4c45">VELVET</text>
+  <text x="400" y="840" text-anchor="middle" font-family="Verdana, sans-serif" font-size="28" letter-spacing="4" fill="#6f4c45">SERUM</text>
+</svg>

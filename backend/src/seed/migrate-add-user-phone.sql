@@ -1,0 +1,4 @@
+USE beauty_ecom;
+
+ALTER TABLE Users
+  ADD COLUMN IF NOT EXISTS phone VARCHAR(50) NOT NULL AFTER email;

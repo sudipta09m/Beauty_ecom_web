@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Cloud Finish Compact</title>
+  <desc id="desc">Illustrated compact and powder tones for Cloud Finish Compact.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#efe7de"/>
+      <stop offset="100%" stop-color="#d6c2b5"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <circle cx="420" cy="440" r="180" fill="#151515"/>
+  <circle cx="420" cy="440" r="135" fill="#f2d6bf"/>
+  <rect x="190" y="180" width="230" height="96" rx="16" fill="#111"/>
+  <text x="305" y="238" text-anchor="middle" font-family="Verdana, sans-serif" font-size="24" letter-spacing="4" fill="#fff">CLOUD</text>
+  <circle cx="600" cy="610" r="86" fill="#c89e76"/>
+  <circle cx="235" cy="680" r="58" fill="#f3d9c7"/>
+  <text x="400" y="845" text-anchor="middle" font-family="Georgia, serif" font-size="46" fill="#5e4b44">Cloud Finish</text>
+  <text x="400" y="900" text-anchor="middle" font-family="Georgia, serif" font-size="46" fill="#5e4b44">Compact</text>
+</svg>

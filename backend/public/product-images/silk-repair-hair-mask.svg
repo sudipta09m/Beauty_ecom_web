@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Silk Repair Hair Mask</title>
+  <desc id="desc">Illustrated tube for Silk Repair Hair Mask.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7f3ee"/>
+      <stop offset="100%" stop-color="#d8d3cf"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <ellipse cx="400" cy="810" rx="220" ry="38" fill="#d9d0ca"/>
+  <path d="M290 180h220l-35 560c-4 42-36 70-75 70h-1c-39 0-71-28-75-70z" fill="#f9f4ef"/>
+  <rect x="315" y="170" width="170" height="55" rx="16" fill="#ece3db"/>
+  <text x="400" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="32" fill="#7a5d52">SILK</text>
+  <text x="400" y="466" text-anchor="middle" font-family="Georgia, serif" font-size="32" fill="#7a5d52">REPAIR</text>
+  <text x="400" y="512" text-anchor="middle" font-family="Georgia, serif" font-size="32" fill="#7a5d52">MASK</text>
+  <text x="400" y="890" text-anchor="middle" font-family="Verdana, sans-serif" font-size="28" letter-spacing="4" fill="#7a5d52">HAIR CARE</text>
+</svg>
