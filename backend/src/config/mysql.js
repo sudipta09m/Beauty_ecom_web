@@ -91,12 +91,12 @@ const ensureSchema = async () => {
   `);
 
   const productImageMap = [
-    ["Rose Velvet Serum", "/product-images/rose-velvet-serum.svg"],
-    ["Soft Matte Lip Cloud", "/product-images/soft-matte-lip-cloud.svg"],
-    ["Silk Repair Hair Mask", "/product-images/silk-repair-hair-mask.svg"],
-    ["Coconut Milk Body Wash", "/product-images/coconut-milk-body-wash.svg"],
-    ["Amber Bloom Eau de Parfum", "/product-images/amber-bloom-eau-de-parfum.svg"],
-    ["Cloud Finish Compact", "/product-images/cloud-finish-compact.svg"]
+    ["Rose Velvet Serum", "rose-velvet-serum.svg"],
+    ["Soft Matte Lip Cloud", "soft-matte-lip-cloud.svg"],
+    ["Silk Repair Hair Mask", "silk-repair-hair-mask.svg"],
+    ["Coconut Milk Body Wash", "coconut-milk-body-wash.svg"],
+    ["Amber Bloom Eau de Parfum", "amber-bloom-eau-de-parfum.svg"],
+    ["Cloud Finish Compact", "cloud-finish-compact.svg"]
   ];
 
   for (const [productName, imagePath] of productImageMap) {
@@ -104,9 +104,9 @@ const ensureSchema = async () => {
       `
         UPDATE Products
         SET
-          image_path = ?,
-          image_path_2 = COALESCE(image_path_2, ?),
-          image_path_3 = COALESCE(image_path_3, ?)
+          image_path = COALESCE(NULLIF(image_path, ''), ?),
+          image_path_2 = COALESCE(NULLIF(image_path_2, ''), ?),
+          image_path_3 = COALESCE(NULLIF(image_path_3, ''), ?)
         WHERE name = ?
       `,
       [imagePath, imagePath, imagePath, productName]

@@ -12,6 +12,8 @@ const filterSchema = z.object({
   search: z.string().optional()
 });
 
+const trimTrailingSlash = (value) => value.replace(/\/+$/, "");
+
 const normalizeImagePath = (imagePath, req) => {
   if (!imagePath) {
     return imagePath;
@@ -21,15 +23,20 @@ const normalizeImagePath = (imagePath, req) => {
     return imagePath;
   }
 
-  const normalizedPathSource = imagePath.startsWith("/public/") ? imagePath.replace(/^\/public/, "") : imagePath;
-  const normalizedPath = normalizedPathSource
-    .replace(/^public\//, "")
-    .replace(/^\/?backend\/public\//, "")
-    .replace(/^product-images\//, "product-images/");
+  const normalizedPath = String(imagePath)
+    .trim()
+    .replace(/^\/?backend\/public\/product-images\//, "")
+    .replace(/^\/?public\/product-images\//, "")
+    .replace(/^\/?product-images\//, "")
+    .replace(/^\/+/, "");
 
-  const relativePath = normalizedPath.startsWith("/") ? normalizedPath : `/${normalizedPath}`;
-  const baseUrl = env.assetBaseUrl || env.publicBaseUrl || `${req.protocol}://${req.get("host")}`;
-  return `${baseUrl.replace(/\/$/, "")}${relativePath}`;
+  const assetBaseUrl = env.assetBaseUrl
+    ? trimTrailingSlash(env.assetBaseUrl)
+    : env.publicBaseUrl
+      ? `${trimTrailingSlash(env.publicBaseUrl)}/product-images`
+      : `${req.protocol}://${req.get("host")}/product-images`;
+
+  return `${assetBaseUrl}/${normalizedPath}`;
 };
 
 const applyFilters = (products, filters) =>

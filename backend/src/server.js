@@ -16,7 +16,8 @@ const start = async () => {
   while (true) {
     try {
       await listen(port);
-      console.log(`API running on http://localhost:${port}`);
+      const publicUrl = env.publicBaseUrl || `http://localhost:${port}`;
+      console.log(`API running on ${publicUrl}`);
       break;
     } catch (error) {
       if (error.code !== "EADDRINUSE") {
