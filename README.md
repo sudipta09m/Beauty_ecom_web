@@ -18,12 +18,17 @@ beauty_ecom/
       config/
       controllers/
       middleware/
-      models/
       routes/
       services/
       utils/
+    public/
+    seed/
+  deploy/
+    nginx/
+    pm2/
   frontend/
     src/
+      assets/
       components/
       data/
       lib/
@@ -69,6 +74,11 @@ npm run dev
 npm --prefix backend run dev
 npm --prefix frontend run dev
 ```
+
+EC2 helper configs are included here:
+
+- [deploy/nginx/ur-beauty-api.conf](/home/sudip/My_Works/beauty_ecom/deploy/nginx/ur-beauty-api.conf)
+- [deploy/pm2/ecosystem.config.cjs](/home/sudip/My_Works/beauty_ecom/deploy/pm2/ecosystem.config.cjs)
 
 ## API Overview
 

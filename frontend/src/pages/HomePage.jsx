@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import SectionTitle from "../components/SectionTitle";
 import { categories } from "../data/products";
+import heroImage from "../assets/beauty-hero.svg";
 
 export default function HomePage({ trending, offers, onAddToCart }) {
   return (
@@ -29,7 +30,7 @@ export default function HomePage({ trending, offers, onAddToCart }) {
 
           <div className="hero-visual">
             <img
-              src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80"
+              src={heroImage}
               alt="Luxury beauty hero"
               className="hero-visual__image"
             />
