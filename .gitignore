@@ -30,4 +30,4 @@ pnpm-debug.log*
 .idea/
 .vscode/
 .codex
-.plan.txt
+*.txt
