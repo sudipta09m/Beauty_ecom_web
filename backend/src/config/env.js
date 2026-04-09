@@ -7,6 +7,7 @@ export const env = {
   clientUrl: process.env.CLIENT_URL || "http://localhost:5173",
   publicBaseUrl: process.env.PUBLIC_BASE_URL || "",
   assetBaseUrl: process.env.ASSET_BASE_URL || "",
+  serveFrontend: process.env.SERVE_FRONTEND === "true",
   jwtSecret: process.env.JWT_SECRET || "change-me",
   mysql: {
     host: process.env.MYSQL_HOST || "",

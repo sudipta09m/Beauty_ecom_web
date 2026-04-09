@@ -1,5 +1,6 @@
 import cors from "cors";
 import express from "express";
+import fs from "fs";
 import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
@@ -14,6 +15,7 @@ import { errorHandler } from "./middleware/error.js";
 
 export const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const frontendDistPath = path.resolve(__dirname, "../../frontend/dist");
 
 const allowedOrigins = new Set(
   (env.clientUrl || "http://localhost:5173")
@@ -57,5 +59,13 @@ app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/feedback", feedbackRoutes);
+
+if (env.serveFrontend && fs.existsSync(frontendDistPath)) {
+  app.use(express.static(frontendDistPath));
+
+  app.get(/^\/(?!api|product-images).*/, (req, res) => {
+    res.sendFile(path.join(frontendDistPath, "index.html"));
+  });
+}
 
 app.use(errorHandler);
