@@ -216,25 +216,35 @@ export default function App() {
 
   const handleFeedbackSubmit = async (event) => {
     event.preventDefault();
-    const payload = Object.fromEntries(new FormData(event.currentTarget).entries());
+    const form = event.currentTarget;
+    const payload = Object.fromEntries(new FormData(form).entries());
     try {
       await request("/feedback", { method: "POST", body: JSON.stringify(payload) });
       setMessage("Feedback sent. Thank you for sharing it.");
-      event.currentTarget.reset();
+      form.reset();
     } catch (error) {
-      setMessage("Feedback saved locally in the UI flow.");
+      setMessage(
+        error.message === "Failed to fetch"
+          ? "Could not reach the backend. Make sure the API server is running and the feedback route is accessible."
+          : error.message || "Could not send feedback."
+      );
     }
   };
 
   const handleWholesaleSubmit = async (event) => {
     event.preventDefault();
-    const payload = Object.fromEntries(new FormData(event.currentTarget).entries());
+    const form = event.currentTarget;
+    const payload = Object.fromEntries(new FormData(form).entries());
     try {
       await request("/feedback/wholesale", { method: "POST", body: JSON.stringify(payload) });
       setMessage("Thank you for your wholesale request. We will connect you soon.");
-      event.currentTarget.reset();
+      form.reset();
     } catch (error) {
-      setMessage("Thank you for your wholesale request. We will connect you soon.");
+      setMessage(
+        error.message === "Failed to fetch"
+          ? "Could not reach the backend. Make sure the API server is running and the wholesale route is accessible."
+          : error.message || "Could not submit your wholesale request."
+      );
     }
   };
 
