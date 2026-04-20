@@ -61,7 +61,7 @@ const mapProductRow = (row, req) => ({
   image_path: normalizeImagePath(row.image_path, req),
   image_path_2: normalizeImagePath(row.image_path_2 || row.image_path, req),
   image_path_3: normalizeImagePath(row.image_path_3 || row.image_path, req),
-  stock: Number(row.stock),
+  stock: row.stock,
   rating: Number(row.rating),
   description: row.description
 });

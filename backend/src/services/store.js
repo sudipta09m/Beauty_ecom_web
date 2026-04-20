@@ -9,7 +9,7 @@ const productCatalog = [
     image_path: "rose-velvet-serum.svg",
     image_path_2: "rose-velvet-serum.svg",
     image_path_3: "rose-velvet-serum.svg",
-    stock: 24,
+    stock: "in stock",
     rating: 4.8,
     description: "A glow-boosting serum with rose extract, niacinamide, and hyaluronic acid."
   },
@@ -21,7 +21,7 @@ const productCatalog = [
     image_path: "soft-matte-lip-cloud.svg",
     image_path_2: "soft-matte-lip-cloud.svg",
     image_path_3: "soft-matte-lip-cloud.svg",
-    stock: 43,
+    stock: "in stock",
     rating: 4.7,
     description: "Air-whipped lip color with a blurred matte finish and comfortable wear."
   },
@@ -33,7 +33,7 @@ const productCatalog = [
     image_path: "silk-repair-hair-mask.svg",
     image_path_2: "silk-repair-hair-mask.svg",
     image_path_3: "silk-repair-hair-mask.svg",
-    stock: 31,
+    stock: "in stock",
     rating: 4.6,
     description: "A rich mask that smooths dry ends and restores shine in one treatment."
   },
@@ -45,7 +45,7 @@ const productCatalog = [
     image_path: "coconut-milk-body-wash.svg",
     image_path_2: "coconut-milk-body-wash.svg",
     image_path_3: "coconut-milk-body-wash.svg",
-    stock: 51,
+    stock: "in stock",
     rating: 4.5,
     description: "Gentle, creamy cleanser with coconut milk and shea for daily softness."
   },
@@ -57,7 +57,7 @@ const productCatalog = [
     image_path: "amber-bloom-eau-de-parfum.svg",
     image_path_2: "amber-bloom-eau-de-parfum.svg",
     image_path_3: "amber-bloom-eau-de-parfum.svg",
-    stock: 17,
+    stock: "in stock",
     rating: 4.9,
     description: "A warm floral fragrance with amber, peony, and skin-soft musk."
   },
@@ -69,7 +69,7 @@ const productCatalog = [
     image_path: "cloud-finish-compact.svg",
     image_path_2: "cloud-finish-compact.svg",
     image_path_3: "cloud-finish-compact.svg",
-    stock: 35,
+    stock: "in stock",
     rating: 4.4,
     description: "Weightless setting powder that smooths pores and controls midday shine."
   }

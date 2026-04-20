@@ -28,7 +28,7 @@ export default function Navbar({ onCartOpen, cartCount, authUser, onLogout }) {
           </div>
           <div className="site-brand__copy">
             <p className="site-brand__name">Ur Beauty</p>
-            <p className="site-brand__tag">Soft Luxury Beauty</p>
+            <p className="site-brand__tag">your local online store</p>
           </div>
         </Link>
 

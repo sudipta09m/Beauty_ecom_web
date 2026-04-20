@@ -2,12 +2,12 @@ USE beauty_ecom;
 
 INSERT INTO Products (id, name, category, price, rating, image_path, image_path_2, image_path_3, description, stock)
 VALUES
-  (1, 'Rose Velvet Serum', 'Skincare', 38.00, 4.8, 'rose-velvet-serum.svg', 'rose-velvet-serum.svg', 'rose-velvet-serum.svg', 'A glow-boosting serum with rose extract, niacinamide, and hyaluronic acid.', 24),
-  (2, 'Soft Matte Lip Cloud', 'Makeup', 22.00, 4.7, 'soft-matte-lip-cloud.svg', 'soft-matte-lip-cloud.svg', 'soft-matte-lip-cloud.svg', 'Air-whipped lip color with a blurred matte finish and comfortable wear.', 43),
-  (3, 'Silk Repair Hair Mask', 'Hair Care', 28.00, 4.6, 'silk-repair-hair-mask.svg', 'silk-repair-hair-mask.svg', 'silk-repair-hair-mask.svg', 'A rich mask that smooths dry ends and restores shine in one treatment.', 31),
-  (4, 'Coconut Milk Body Wash', 'Bath & Body', 18.00, 4.5, 'coconut-milk-body-wash.svg', 'coconut-milk-body-wash.svg', 'coconut-milk-body-wash.svg', 'Gentle, creamy cleanser with coconut milk and shea for daily softness.', 51),
-  (5, 'Amber Bloom Eau de Parfum', 'Fragrance', 56.00, 4.9, 'amber-bloom-eau-de-parfum.svg', 'amber-bloom-eau-de-parfum.svg', 'amber-bloom-eau-de-parfum.svg', 'A warm floral fragrance with amber, peony, and skin-soft musk.', 17),
-  (6, 'Cloud Finish Compact', 'Makeup', 26.00, 4.4, 'cloud-finish-compact.svg', 'cloud-finish-compact.svg', 'cloud-finish-compact.svg', 'Weightless setting powder that smooths pores and controls midday shine.', 35)
+  (1, 'Rose Velvet Serum', 'Skincare', 38.00, 4.8, 'rose-velvet-serum.svg', 'rose-velvet-serum.svg', 'rose-velvet-serum.svg', 'A glow-boosting serum with rose extract, niacinamide, and hyaluronic acid.', 'in stock'),
+  (2, 'Soft Matte Lip Cloud', 'Makeup', 22.00, 4.7, 'soft-matte-lip-cloud.svg', 'soft-matte-lip-cloud.svg', 'soft-matte-lip-cloud.svg', 'Air-whipped lip color with a blurred matte finish and comfortable wear.', 'in stock'),
+  (3, 'Silk Repair Hair Mask', 'Hair Care', 28.00, 4.6, 'silk-repair-hair-mask.svg', 'silk-repair-hair-mask.svg', 'silk-repair-hair-mask.svg', 'A rich mask that smooths dry ends and restores shine in one treatment.', 'in stock'),
+  (4, 'Coconut Milk Body Wash', 'Bath & Body', 18.00, 4.5, 'coconut-milk-body-wash.svg', 'coconut-milk-body-wash.svg', 'coconut-milk-body-wash.svg', 'Gentle, creamy cleanser with coconut milk and shea for daily softness.', 'in stock'),
+  (5, 'Amber Bloom Eau de Parfum', 'Fragrance', 56.00, 4.9, 'amber-bloom-eau-de-parfum.svg', 'amber-bloom-eau-de-parfum.svg', 'amber-bloom-eau-de-parfum.svg', 'A warm floral fragrance with amber, peony, and skin-soft musk.', 'in stock'),
+  (6, 'Cloud Finish Compact', 'Makeup', 26.00, 4.4, 'cloud-finish-compact.svg', 'cloud-finish-compact.svg', 'cloud-finish-compact.svg', 'Weightless setting powder that smooths pores and controls midday shine.', 'in stock')
 ON DUPLICATE KEY UPDATE
   category = VALUES(category),
   price = VALUES(price),

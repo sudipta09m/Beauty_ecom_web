@@ -42,6 +42,35 @@ const ensureSchema = async () => {
     `);
   }
 
+  const [productStockRows] = await pool.query(
+    `
+      SELECT DATA_TYPE
+      FROM information_schema.COLUMNS
+      WHERE TABLE_SCHEMA = ?
+        AND TABLE_NAME = 'Products'
+        AND COLUMN_NAME = 'stock'
+      LIMIT 1
+    `,
+    [env.mysql.database]
+  );
+
+  if (productStockRows[0] && !["varchar", "char", "text"].includes(productStockRows[0].DATA_TYPE)) {
+    await pool.query(`
+      ALTER TABLE Products
+      MODIFY COLUMN stock VARCHAR(50) NOT NULL DEFAULT 'in stock'
+    `);
+  }
+
+  await pool.query(`
+    UPDATE Products
+    SET stock = CASE
+      WHEN stock REGEXP '^[0-9]+$' AND CAST(stock AS UNSIGNED) = 0 THEN 'out of stock'
+      WHEN stock REGEXP '^[0-9]+$' THEN 'in stock'
+      WHEN stock IS NULL OR TRIM(stock) = '' THEN 'out of stock'
+      ELSE stock
+    END
+  `);
+
   const [columnRows] = await pool.query(
     `
       SELECT COLUMN_NAME

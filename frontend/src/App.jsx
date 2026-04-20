@@ -15,35 +15,22 @@ import WholesalePage from "./pages/WholesalePage";
 
 const initialFilters = {
   search: "",
-  category: "All",
-  price: "all",
-  rating: "0"
-};
-
-const decodePrice = (range) => {
-  if (range === "0-25") return [0, 25];
-  if (range === "25-40") return [25, 40];
-  if (range === "40-80") return [40, 80];
-  return [0, Infinity];
+  category: "All"
 };
 
 const filterProductList = (items, filters) => {
-  const [minPrice, maxPrice] = decodePrice(filters.price);
-
   return items.filter((product) => {
     const matchesSearch =
       !filters.search ||
       product.name.toLowerCase().includes(filters.search.toLowerCase()) ||
       product.category.toLowerCase().includes(filters.search.toLowerCase());
     const matchesCategory = filters.category === "All" || product.category === filters.category;
-    const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
-    const matchesRating = product.rating >= Number(filters.rating || 0);
 
-    return matchesSearch && matchesCategory && matchesPrice && matchesRating;
+    return matchesSearch && matchesCategory;
   });
 };
 
-function ProductDetailRoute({ onAddToCart, onReviewSubmit, product, setProduct }) {
+function ProductDetailRoute({ onAddToCart, product, setProduct }) {
   const { id } = useParams();
 
   useEffect(() => {
@@ -51,7 +38,7 @@ function ProductDetailRoute({ onAddToCart, onReviewSubmit, product, setProduct }
     getProductById(id).then(setProduct);
   }, [id, setProduct]);
 
-  return <ProductDetailPage product={product} onAddToCart={onAddToCart} onReviewSubmit={onReviewSubmit} />;
+  return <ProductDetailPage product={product} onAddToCart={onAddToCart} />;
 }
 
 export default function App() {
@@ -75,6 +62,10 @@ export default function App() {
     getTrending().then(setTrending);
     getOffers().then(setOffers);
   }, []);
+
+  useEffect(() => {
+    setMessage("");
+  }, [location.pathname]);
 
   useEffect(() => {
     storage.write("beauty-cart", cart);
@@ -223,10 +214,11 @@ export default function App() {
       setMessage("Feedback sent. Thank you for sharing it.");
       form.reset();
     } catch (error) {
+      const feedbackError = error.message?.replace(/^message:\s*/i, "");
       setMessage(
         error.message === "Failed to fetch"
           ? "Could not reach the backend. Make sure the API server is running and the feedback route is accessible."
-          : error.message || "Could not send feedback."
+          : feedbackError || "Could not send feedback."
       );
     }
   };
@@ -320,7 +312,7 @@ export default function App() {
                 onFilterChange={handleFilterChange}
                 onAddToCart={addToCart}
                 title="All Products"
-                copy="Mobile-first browsing with category, price, and rating filters."
+                copy="Mobile-first browsing with quick search and category filters."
               />
             }
           />
@@ -342,7 +334,6 @@ export default function App() {
             element={
               <ProductDetailRoute
                 onAddToCart={addToCart}
-                onReviewSubmit={handleReviewSubmit}
                 product={selectedProduct}
                 setProduct={setSelectedProduct}
               />

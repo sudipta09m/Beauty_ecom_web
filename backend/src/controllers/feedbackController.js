@@ -5,7 +5,7 @@ import { memoryStore } from "../services/store.js";
 const feedbackSchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
-  message: z.string().min(12)
+  message: z.string().min(12, "must have atleast 12 charater")
 });
 
 const wholesaleSchema = z.object({
