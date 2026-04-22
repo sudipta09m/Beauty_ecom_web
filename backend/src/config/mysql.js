@@ -42,6 +42,51 @@ const ensureSchema = async () => {
     `);
   }
 
+  const [actualPriceRows] = await pool.query(
+    `
+      SELECT COLUMN_NAME
+      FROM information_schema.COLUMNS
+      WHERE TABLE_SCHEMA = ?
+        AND TABLE_NAME = 'Products'
+        AND COLUMN_NAME = 'actual_price'
+      LIMIT 1
+    `,
+    [env.mysql.database]
+  );
+
+  if (!actualPriceRows[0]) {
+    await pool.query(`
+      ALTER TABLE Products
+      ADD COLUMN actual_price DECIMAL(10, 2) NOT NULL DEFAULT 0.00 AFTER category
+    `);
+  }
+
+  const [discountPriceRows] = await pool.query(
+    `
+      SELECT COLUMN_NAME
+      FROM information_schema.COLUMNS
+      WHERE TABLE_SCHEMA = ?
+        AND TABLE_NAME = 'Products'
+        AND COLUMN_NAME = 'discount_price'
+      LIMIT 1
+    `,
+    [env.mysql.database]
+  );
+
+  if (!discountPriceRows[0]) {
+    await pool.query(`
+      ALTER TABLE Products
+      ADD COLUMN discount_price DECIMAL(10, 2) NOT NULL DEFAULT 0.00 AFTER actual_price
+    `);
+  }
+
+  await pool.query(`
+    UPDATE Products
+    SET
+      actual_price = CASE WHEN actual_price = 0.00 THEN price ELSE actual_price END,
+      discount_price = CASE WHEN discount_price < 0.00 THEN 0.00 ELSE discount_price END
+  `);
+
   const [productStockRows] = await pool.query(
     `
       SELECT DATA_TYPE

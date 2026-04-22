@@ -605,6 +605,50 @@ button {
   flex-wrap: wrap;
 }
 
+.product-pricing {
+  display: grid;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.product-pricing p {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 13px;
+}
+
+.product-pricing strong {
+  color: var(--cocoa);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.product-pricing__actual {
+  color: var(--text-faint);
+  text-decoration: line-through;
+}
+
+.product-pricing__final {
+  font-size: 16px;
+}
+
+.product-pricing--detail {
+  margin-top: 20px;
+  max-width: 360px;
+}
+
+.product-pricing--detail p {
+  font-size: 15px;
+}
+
+.product-pricing--detail .product-pricing__final {
+  font-size: 24px;
+}
+
 .filter-panel {
   border-radius: 24px;
   padding: 16px;
@@ -764,6 +808,35 @@ button {
   text-align: right;
 }
 
+.order-card--open {
+  box-shadow: 0 28px 70px rgba(120, 78, 64, 0.16);
+}
+
+.order-card__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+}
+
+.order-card__chevron {
+  display: inline-flex;
+  justify-content: center;
+  margin-top: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(91, 67, 60, 0.08);
+  color: var(--cocoa);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .order-card__details {
   margin-top: 16px;
   padding-top: 16px;
@@ -784,6 +857,21 @@ button {
 .cart-drawer__item-price,
 .cart-drawer__summary-value {
   margin: 0;
+  font-weight: 700;
+}
+
+.order-card__actions {
+  margin-top: 18px;
+}
+
+.order-card__cancel {
+  width: 100%;
+  min-height: 46px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(91, 67, 60, 0.1);
+  color: var(--cocoa);
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -958,8 +1046,42 @@ button {
 }
 
 @media (max-width: 639px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .product-card {
+    border-radius: 30px;
+  }
+
+  .product-card__media {
+    aspect-ratio: 1 / 1;
+  }
+
+  .product-card__title {
+    min-height: auto;
+    font-size: clamp(22px, 7vw, 28px);
+  }
+
+  .product-pricing--card {
+    gap: 8px;
+  }
+
+  .product-pricing--card p {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    font-size: 15px;
+  }
+
+  .product-pricing--card .product-pricing__final {
+    font-size: 20px;
+  }
+
   .review-card__header,
   .order-card__row,
+  .order-card__toggle,
   .cart-drawer__item-row {
     align-items: flex-start;
     flex-wrap: wrap;

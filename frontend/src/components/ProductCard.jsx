@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { formatCurrency } from "../lib/currency";
 
 export default function ProductCard({ product, onAddToCart, badge }) {
+  const actualPrice = Number(product.actualPrice ?? product.actual_price ?? product.price);
+  const discountPrice = Number(product.discountPrice ?? product.discount_price ?? Math.max(actualPrice - product.price, 0));
+
   return (
     <article className="product-card">
       <Link to={`/products/${product.id}`} className="product-card__media-link">
@@ -25,8 +28,21 @@ export default function ProductCard({ product, onAddToCart, badge }) {
           <Link to={`/products/${product.id}`} className="product-card__title">
             {product.name}
           </Link>
+          <div className="product-pricing product-pricing--card">
+            <p>
+              <span>Actual price</span>
+              <strong className="product-pricing__actual">{formatCurrency(actualPrice)}</strong>
+            </p>
+            <p>
+              <span>Discount</span>
+              <strong>{formatCurrency(discountPrice)}</strong>
+            </p>
+            <p>
+              <span>After discount</span>
+              <strong className="product-pricing__final">{formatCurrency(product.price)}</strong>
+            </p>
+          </div>
           <div className="product-card__meta">
-            <span>{formatCurrency(product.price)}</span>
             <span>{product.rating} stars</span>
           </div>
         </div>

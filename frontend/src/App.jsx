@@ -166,6 +166,32 @@ export default function App() {
     navigate("/orders");
   };
 
+  const cancelOrder = async (orderId) => {
+    if (!auth?.token) {
+      setMessage("Please login again before cancelling an order.");
+      return;
+    }
+
+    try {
+      const updated = await request(`/orders/${orderId}/cancel`, {
+        method: "PATCH",
+        headers: { Authorization: `Bearer ${auth.token}` }
+      });
+      setOrders((current) => {
+        const nextOrders = current.map((order) =>
+          String(order.id) === String(orderId) ? { ...order, status: updated.status } : order
+        );
+        if (auth?.user?.id) {
+          storage.write(`beauty-orders-${auth.user.id}`, nextOrders);
+        }
+        return nextOrders;
+      });
+      setMessage("Order cancelled successfully.");
+    } catch (error) {
+      setMessage(error.message || "We could not cancel the order.");
+    }
+  };
+
   const handleFilterChange = (key, value) => {
     setFilters((current) => ({ ...current, [key]: value }));
   };
@@ -349,7 +375,7 @@ export default function App() {
               )
             }
           />
-          <Route path="/orders" element={<OrderHistoryPage orders={orders} />} />
+          <Route path="/orders" element={<OrderHistoryPage orders={orders} onCancelOrder={cancelOrder} />} />
           <Route path="/feedback" element={<FeedbackPage onSubmit={handleFeedbackSubmit} message={message} />} />
           <Route path="/wholesale" element={<WholesalePage onSubmit={handleWholesaleSubmit} message={message} />} />
         </Routes>

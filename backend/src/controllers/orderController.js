@@ -216,3 +216,49 @@ export const listOrders = async (req, res, next) => {
     next(error);
   }
 };
+
+export const cancelOrder = async (req, res, next) => {
+  try {
+    const pool = getMySqlPool();
+    if (pool) {
+      const orderId = Number(req.params.id);
+      if (!Number.isInteger(orderId) || orderId <= 0) {
+        return res.status(400).json({ message: "Invalid order id." });
+      }
+
+      const sqlUserId = await resolveSqlUserId(pool, req.user);
+      if (!sqlUserId) {
+        return res.status(404).json({ message: "Order not found." });
+      }
+
+      const [result] = await pool.query(
+        `UPDATE Orders
+         SET status = 'Cancelled'
+         WHERE id = ?
+           AND user_id = ?
+           AND status = 'Processing'`,
+        [orderId, sqlUserId]
+      );
+
+      if (!result.affectedRows) {
+        return res.status(400).json({ message: "Only processing orders can be cancelled." });
+      }
+
+      return res.json({ id: String(orderId), status: "Cancelled" });
+    }
+
+    const order = memoryStore.orders.find((entry) => entry.id === req.params.id && entry.userId === req.user.id);
+    if (!order) {
+      return res.status(404).json({ message: "Order not found." });
+    }
+
+    if (order.status !== "Processing") {
+      return res.status(400).json({ message: "Only processing orders can be cancelled." });
+    }
+
+    order.status = "Cancelled";
+    return res.json({ id: order.id, status: order.status });
+  } catch (error) {
+    next(error);
+  }
+};

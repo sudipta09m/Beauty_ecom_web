@@ -57,6 +57,8 @@ const mapProductRow = (row, req) => ({
   id: Number(row.id),
   name: row.name,
   category: row.category,
+  actualPrice: Number(row.actual_price || row.price),
+  discountPrice: Number(row.discount_price || 0),
   price: Number(row.price),
   image_path: normalizeImagePath(row.image_path, req),
   image_path_2: normalizeImagePath(row.image_path_2 || row.image_path, req),
@@ -74,7 +76,7 @@ export const listProducts = async (req, res, next) => {
     let products = memoryStore.products;
     if (pool) {
       const [rows] = await pool.query(
-        "SELECT id, name, category, price, rating, image_path, image_path_2, image_path_3, description, stock FROM Products"
+        "SELECT id, name, category, actual_price, discount_price, price, rating, image_path, image_path_2, image_path_3, description, stock FROM Products"
       );
       products = rows.map((row) => mapProductRow(row, req));
     }
@@ -104,7 +106,7 @@ export const getProduct = async (req, res, next) => {
 
     if (pool) {
       const [productRows] = await pool.query(
-        "SELECT id, name, category, price, rating, image_path, image_path_2, image_path_3, description, stock FROM Products WHERE id = ? LIMIT 1",
+        "SELECT id, name, category, actual_price, discount_price, price, rating, image_path, image_path_2, image_path_3, description, stock FROM Products WHERE id = ? LIMIT 1",
         [productId]
       );
       product = productRows[0] ? mapProductRow(productRows[0], req) : undefined;
@@ -147,7 +149,7 @@ export const listTrendingProducts = async (req, res, next) => {
     const items = pool
       ? (
           await pool.query(
-            "SELECT id, name, category, price, rating, image_path, image_path_2, image_path_3, description, stock FROM Products ORDER BY rating DESC LIMIT 4"
+            "SELECT id, name, category, actual_price, discount_price, price, rating, image_path, image_path_2, image_path_3, description, stock FROM Products ORDER BY rating DESC LIMIT 4"
           )
         )[0].map((row) => mapProductRow(row, req))
       : [...memoryStore.products]
@@ -171,7 +173,7 @@ export const listOfferProducts = async (req, res, next) => {
     const baseItems = pool
       ? (
           await pool.query(
-            "SELECT id, name, category, price, rating, image_path, image_path_2, image_path_3, description, stock FROM Products LIMIT 4"
+            "SELECT id, name, category, actual_price, discount_price, price, rating, image_path, image_path_2, image_path_3, description, stock FROM Products LIMIT 4"
           )
         )[0].map((row) => mapProductRow(row, req))
       : memoryStore.products

@@ -13,6 +13,9 @@ export default function ProductDetailPage({ product, onAddToCart }) {
     return <div className="empty-state">Product not found.</div>;
   }
 
+  const actualPrice = Number(product.actualPrice ?? product.actual_price ?? product.price);
+  const discountPrice = Number(product.discountPrice ?? product.discount_price ?? Math.max(actualPrice - product.price, 0));
+
   const showPreviousImage = () => {
     setActiveImageIndex((current) => (current === 0 ? gallery.length - 1 : current - 1));
   };
@@ -65,8 +68,21 @@ export default function ProductDetailPage({ product, onAddToCart }) {
         <div className="panel panel--large">
           <p className="eyebrow">{product.category}</p>
           <h1 className="product-detail__title">{product.name}</h1>
+          <div className="product-pricing product-pricing--detail">
+            <p>
+              <span>Actual price</span>
+              <strong className="product-pricing__actual">{formatCurrency(actualPrice)}</strong>
+            </p>
+            <p>
+              <span>Discount</span>
+              <strong>{formatCurrency(discountPrice)}</strong>
+            </p>
+            <p>
+              <span>After discount</span>
+              <strong className="product-pricing__final">{formatCurrency(product.price)}</strong>
+            </p>
+          </div>
           <div className="product-detail__meta">
-            <span className="product-detail__price">{formatCurrency(product.price)}</span>
             <span>{product.rating} stars</span>
           </div>
           <p className="product-detail__description">{product.description}</p>
