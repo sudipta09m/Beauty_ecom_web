@@ -104,7 +104,6 @@ export default function App() {
   }, [location.pathname, searchParams]);
 
   const filteredProducts = filterProductList(products, filters);
-  const filteredOffers = filterProductList(offers, filters);
 
   const addToCart = (product) => {
     setCart((current) => {
@@ -344,14 +343,18 @@ export default function App() {
           />
           <Route
             path="/offers"
+            element={<Navigate to="/trending" replace />}
+          />
+          <Route
+            path="/trending"
             element={
               <ProductListingPage
-                products={filteredOffers}
-                filters={filters}
-                onFilterChange={handleFilterChange}
+                products={trending}
                 onAddToCart={addToCart}
-                title="Offer Products"
-                copy="Current value sets and promotional picks."
+                title="Trending Products"
+                copy="Customer-loved products picked from the highest rated essentials."
+                showFilters={false}
+                emptyMessage="Trending products will appear here soon."
               />
             }
           />

@@ -22,8 +22,8 @@ export default function HomePage({ trending, offers, onAddToCart }) {
               <Link to="/products" className="button button--primary">
                 Shop All Products
               </Link>
-              <Link to="/offers" className="button button--secondary">
-                View Offers
+              <Link to="/trending" className="button button--secondary">
+                View Trending
               </Link>
             </div>
           </div>

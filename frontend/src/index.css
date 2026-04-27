@@ -764,6 +764,11 @@ button {
   overflow-wrap: anywhere;
 }
 
+.product-detail__cart-button {
+  margin-top: 28px;
+  padding-inline: 32px;
+}
+
 .panel__title {
   margin: 0;
   font-size: 24px;
@@ -864,15 +869,46 @@ button {
   margin-top: 18px;
 }
 
-.order-card__cancel {
+.order-card__cancel,
+.order-card__keep {
   width: 100%;
   min-height: 46px;
   border: 0;
   border-radius: 999px;
-  background: rgba(91, 67, 60, 0.1);
-  color: var(--cocoa);
   font-size: 14px;
   font-weight: 700;
+}
+
+.order-card__cancel {
+  background: rgba(91, 67, 60, 0.1);
+  color: var(--cocoa);
+}
+
+.order-card__cancel--confirm {
+  background: var(--cocoa);
+  color: var(--white);
+}
+
+.order-card__keep {
+  background: var(--cream);
+  color: var(--text-soft);
+}
+
+.order-card__confirm {
+  display: grid;
+  gap: 12px;
+}
+
+.order-card__confirm-text {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.order-card__confirm-actions {
+  display: grid;
+  gap: 10px;
 }
 
 .review-card {

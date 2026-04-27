@@ -89,7 +89,7 @@ export default function ProductDetailPage({ product, onAddToCart }) {
           <button
             type="button"
             onClick={() => onAddToCart(product)}
-            className="button button--primary"
+            className="button button--primary product-detail__cart-button"
           >
             Add to Cart
           </button>

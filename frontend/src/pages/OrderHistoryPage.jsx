@@ -3,6 +3,7 @@ import { formatCurrency } from "../lib/currency";
 
 export default function OrderHistoryPage({ orders, onCancelOrder }) {
   const [openOrderId, setOpenOrderId] = useState(null);
+  const [confirmCancelOrderId, setConfirmCancelOrderId] = useState(null);
 
   useEffect(() => {
     if (!orders.length) {
@@ -11,7 +12,21 @@ export default function OrderHistoryPage({ orders, onCancelOrder }) {
     }
 
     setOpenOrderId((current) => (orders.some((order) => String(order.id) === String(current)) ? current : orders[0].id));
+    setConfirmCancelOrderId((current) =>
+      orders.some((order) => String(order.id) === String(current) && order.status?.toLowerCase() === "processing")
+        ? current
+        : null
+    );
   }, [orders]);
+
+  const handleCancelClick = (orderId) => {
+    setConfirmCancelOrderId((current) => (String(current) === String(orderId) ? null : orderId));
+  };
+
+  const confirmCancelOrder = (orderId) => {
+    setConfirmCancelOrderId(null);
+    onCancelOrder(orderId);
+  };
 
   return (
     <div className="stack-md">
@@ -69,13 +84,35 @@ export default function OrderHistoryPage({ orders, onCancelOrder }) {
                   ) : null}
                   {canCancel ? (
                     <div className="order-card__actions">
-                      <button
-                        type="button"
-                        className="order-card__cancel"
-                        onClick={() => onCancelOrder(order.id)}
-                      >
-                        Cancel order
-                      </button>
+                      {String(confirmCancelOrderId) === String(order.id) ? (
+                        <div className="order-card__confirm">
+                          <p className="order-card__confirm-text">Please recheck before cancelling this order.</p>
+                          <div className="order-card__confirm-actions">
+                            <button
+                              type="button"
+                              className="order-card__cancel order-card__cancel--confirm"
+                              onClick={() => confirmCancelOrder(order.id)}
+                            >
+                              Yes, cancel
+                            </button>
+                            <button
+                              type="button"
+                              className="order-card__keep"
+                              onClick={() => setConfirmCancelOrderId(null)}
+                            >
+                              Keep order
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <button
+                          type="button"
+                          className="order-card__cancel"
+                          onClick={() => handleCancelClick(order.id)}
+                        >
+                          Cancel order
+                        </button>
+                      )}
                     </div>
                   ) : null}
                 </>
